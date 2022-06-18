@@ -17,7 +17,7 @@ class DataText extends DataElement {
   }) =>
       DataText(
         text: text ?? this.text,
-        id: id ?? this.text,
+        id: id ?? this.id,
         width: width ?? this.width,
       );
 

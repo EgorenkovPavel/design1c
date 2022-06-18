@@ -37,7 +37,7 @@ class _DragTargetZoneState extends State<DragTargetZone> {
           });
         }
       },
-      onMove: (details) {
+      onMove: (_) {
         if (!isHovered) {
           setState(() {
             isHovered = true;

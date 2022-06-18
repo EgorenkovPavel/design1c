@@ -1,6 +1,7 @@
 import 'package:uuid/uuid.dart';
+import 'package:equatable/equatable.dart';
 
-abstract class DataElement {
+abstract class DataElement extends Equatable {
 
   static String newId() => const Uuid().v1();
 
@@ -11,12 +12,6 @@ abstract class DataElement {
   DataElement copy();
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is DataElement &&
-              runtimeType == other.runtimeType &&
-              id == other.id;
+  List<Object> get props => [id];
 
-  @override
-  int get hashCode => id.hashCode;
 }

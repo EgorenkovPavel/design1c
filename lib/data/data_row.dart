@@ -16,8 +16,10 @@ class DataElementsRow{
 
   void delete(DataElement element) => elements.remove(element);
 
-  void replace(DataElement before, DataElement after){
-    final index = elements.indexOf(before);
-    elements[index] = after;
+  void replace(DataElement after){
+    final index = elements.indexWhere((element) => element.id == after.id);
+    if(index >= 0) {
+      elements[index] = after;
+    }
   }
 }

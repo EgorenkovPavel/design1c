@@ -30,39 +30,43 @@ class ResizeMarker extends StatelessWidget {
 
 const ballDiameter = 20.0;
 
-class ManipulatingBall extends StatefulWidget {
+class ManipulatingBall extends StatelessWidget {
   const ManipulatingBall({Key? key, required this.onDrag}) : super(key: key);
 
   final Function onDrag;
 
-  @override
-  _ManipulatingBallState createState() => _ManipulatingBallState();
-}
+  // _handleDrag(details) {
+  //   setState(() {
+  //     initX = details.globalPosition.dx;
+  //     initY = details.globalPosition.dy;
+  //   });
+  // }
+  //
+  // _handleUpdate(details) {
+  //   var dx = details.globalPosition.dx - initX;
+  //   var dy = details.globalPosition.dy - initY;
+  //   initX = details.globalPosition.dx;
+  //   initY = details.globalPosition.dy;
+  //   widget.onDrag(dx, dy);
+  // }
 
-class _ManipulatingBallState extends State<ManipulatingBall> {
-  double initX = 0;
-  double initY = 0;
+  void updateWidths(Offset offset) {
+    // final width = MediaQuery.of(context).size.width;
+    final delta = offset.dx;
 
-  _handleDrag(details) {
-    setState(() {
-      initX = details.globalPosition.dx;
-      initY = details.globalPosition.dy;
-    });
-  }
-
-  _handleUpdate(details) {
-    var dx = details.globalPosition.dx - initX;
-    var dy = details.globalPosition.dy - initY;
-    initX = details.globalPosition.dx;
-    initY = details.globalPosition.dy;
-    widget.onDrag(dx, dy);
+    print(delta);
+    onDrag(delta, 0);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onPanStart: _handleDrag,
-      onPanUpdate: _handleUpdate,
+      behavior: HitTestBehavior.opaque,
+      onHorizontalDragUpdate: (details) {
+        updateWidths(details.delta);
+      },
+      // onPanStart: _handleDrag,
+      // onPanUpdate: _handleUpdate,
       child: Container(
         width: ballDiameter,
         height: ballDiameter,

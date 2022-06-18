@@ -3,16 +3,16 @@ import 'package:design1c/ui/ui_element.dart';
 import 'package:design1c/utils/values.dart';
 import 'package:flutter/material.dart';
 
-class UIButton extends UIElement<DataButton> {
+class UIButton extends StatelessWidget {
+
+  final DataButton data;
+  final bool isActive;
+
   const UIButton({
     Key? key,
-    required DataButton data,
-    required bool isActive,
-  }) : super(
-    key: key,
-          data: data,
-          isActive: isActive,
-        );
+    required this.data,
+    required this.isActive,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

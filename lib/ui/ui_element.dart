@@ -27,7 +27,7 @@ abstract class UIElement<T extends DataElement> extends StatelessWidget {
     if (data is DataButton) {
       return UIButton(data: data, isActive: isActive);
     } else if (data is DataText) {
-      return UIText(data: data, isActive: isActive, onUpdate: onUpdate);
+      return UIText(data: data, isActive: isActive);//, onUpdate: onUpdate);
     } else if (data is DataField) {
       return UIField(data: data, isActive: isActive, onUpdate: onUpdate);
     } else if (data is DataCheckbox){
@@ -51,9 +51,9 @@ abstract class UIElement<T extends DataElement> extends StatelessWidget {
         child: Draggable<DataElement>(
           data: data,
           feedback: UIElement.fromData(data: data, isActive: false),
+          child: UIElement.fromData(data: data, isActive: isActive),
           childWhenDragging: UIElement.fromData(data: data, isActive: false),
           onDragCompleted: onReplace,
-          child: UIElement.fromData(data: data, isActive: isActive),
         ),
       );
     }
