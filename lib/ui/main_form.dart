@@ -14,8 +14,6 @@ import 'elements/ui_checkbox.dart';
 import 'elements/ui_field.dart';
 import 'elements/ui_text.dart';
 import 'home_bloc.dart';
-import 'new_ui_field.dart';
-import 'testik.dart';
 
 class MainForm extends StatelessWidget {
   const MainForm({Key? key}) : super(key: key);
@@ -24,7 +22,7 @@ class MainForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 700,
-      height: 500,
+      //height: 500,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
           border: Border.all(color: FormColors.formBorderColor),
