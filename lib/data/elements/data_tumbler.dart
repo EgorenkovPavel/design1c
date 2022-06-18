@@ -9,7 +9,6 @@ class DataTumbler extends DataElement{
     required this.items,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataTumbler copyWith({
     String? id,
     List<String>? items,

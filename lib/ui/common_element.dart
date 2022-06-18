@@ -16,8 +16,8 @@ class CommonElement extends StatelessWidget {
     return Draggable<DataElement>(
       data: data,
       feedback: child,
-      child: child,
       childWhenDragging: child,
+      child: child,
     );
   }
 }

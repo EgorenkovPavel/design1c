@@ -1,5 +1,4 @@
 import 'package:design1c/data/data_element.dart';
-import 'package:design1c/utils/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,6 @@ class DataButton extends DataElement {
     required this.textStyle,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataButton copyWith({
     String? title,
     Color? backgroundColor,

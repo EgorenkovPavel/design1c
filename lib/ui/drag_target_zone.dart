@@ -9,15 +9,15 @@ class DragTargetZone extends StatefulWidget {
   final bool zoomWidth;
   final bool zoomHeight;
 
-  DragTargetZone.row({this.width, required this.onAccept})
+  const DragTargetZone.row({Key? key, this.width, required this.onAccept})
       : height = Dimens.minRowHeigth,
         zoomWidth = true,
-        zoomHeight = false;
+        zoomHeight = false, super(key: key);
 
-  DragTargetZone.column({this.height, required this.onAccept})
+  const DragTargetZone.column({Key? key, this.height, required this.onAccept})
       : zoomWidth = false,
         zoomHeight = true,
-        width = null;
+        width = null, super(key: key);
 
   @override
   State<DragTargetZone> createState() => _DragTargetZoneState();

@@ -1,13 +1,12 @@
 import 'package:design1c/data/elements/data_field.dart';
 import 'package:design1c/ui/edit_panel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class FieldPanel extends EditPanel<DataField> {
-  FieldPanel({
+  const FieldPanel({Key? key,
     required DataField data,
     required void Function(DataField newData) onUpdate,
-  }) : super(
+  }) : super(key: key,
           data: data,
           onUpdate: onUpdate,
         );

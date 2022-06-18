@@ -9,7 +9,6 @@ class DataCheckbox extends DataElement{
     required this.title,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataCheckbox copyWith({
     String? id,
     String? title,

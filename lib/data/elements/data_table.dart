@@ -9,7 +9,6 @@ class DataTable extends DataElement{
     required this.items,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataTable copyWith({
     String? id,
     List<String>? items,

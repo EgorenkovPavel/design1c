@@ -9,7 +9,6 @@ class DataPages extends DataElement{
     required this.items,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataPages copyWith({
     String? id,
     List<String>? items,

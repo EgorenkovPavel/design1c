@@ -26,15 +26,15 @@ class CommonElementsPanel extends StatelessWidget {
     DataCheckbox(title: 'Переключатель'),
   ];
 
+  CommonElementsPanel({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children:
-            commonElements.map<Widget>((e) => CommonElement(data: e))
-                .expand((element) => [SizedBox(height: 16.0), element])
-                .toList(),
-      ),
+    return Column(
+      children:
+          commonElements.map<Widget>((e) => CommonElement(data: e))
+              .expand((element) => [const SizedBox(height: 16.0), element])
+              .toList(),
     );
   }
 }

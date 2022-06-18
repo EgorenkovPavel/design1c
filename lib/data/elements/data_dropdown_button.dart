@@ -9,7 +9,6 @@ class DataDropdownButton extends DataElement{
     required this.title,
   }) : super(id: id ?? DataElement.newId());
 
-  @override
   DataDropdownButton copyWith({
     String? id,
     String? title,

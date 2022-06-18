@@ -27,7 +27,7 @@ abstract class EditPanel<T extends DataElement> extends StatelessWidget {
     }else if (data is DataField){
       return FieldPanel(data: data, onUpdate: onUpdate,);
     }
-    return SizedBox();
+    return const SizedBox();
   }
 
 }

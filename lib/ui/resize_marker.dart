@@ -31,7 +31,7 @@ class ResizeMarker extends StatelessWidget {
 const ballDiameter = 20.0;
 
 class ManipulatingBall extends StatefulWidget {
-  ManipulatingBall({required this.onDrag});
+  const ManipulatingBall({Key? key, required this.onDrag}) : super(key: key);
 
   final Function onDrag;
 
