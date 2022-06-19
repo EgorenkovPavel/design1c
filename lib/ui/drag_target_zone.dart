@@ -10,7 +10,7 @@ class DragTargetZone extends StatefulWidget {
   final bool zoomHeight;
 
   const DragTargetZone.row({Key? key, this.width, required this.onAccept})
-      : height = Dimens.minRowHeigth,
+      : height = Dimens.minRowHeight,
         zoomWidth = true,
         zoomHeight = false, super(key: key);
 

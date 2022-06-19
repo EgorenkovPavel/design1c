@@ -17,23 +17,23 @@ class UIButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(4.0),
-      height: Dimens.minRowHeigth,
+      padding: const EdgeInsets.all(Dimens.buttonBorderPadding),
+      height: Dimens.buttonHeight,
       decoration: BoxDecoration(
         //color: data.backgroundColor,
         gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              data.backgroundColor.withOpacity(0.8),
+              data.backgroundColor.withOpacity(0.2),
               data.backgroundColor
             ]),
-        borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-        border: Border.all(color: Colors.black, width: isActive ? 2 : 1),
+        borderRadius: const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+        border: Border.all(color: FormColors.buttonBorderColor, width: isActive ? 2 : Dimens.buttonBorderWidth),
       ),
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.buttonTextHorizontalPadding),
         child: Text(
           data.title,
           style: data.textStyle,

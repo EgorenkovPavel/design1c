@@ -24,22 +24,25 @@ class UIField extends UIElement<DataField> {
       children: [
         Container(
           padding: const EdgeInsets.all(4.0),
-          height: Dimens.minRowHeigth,
+          height: Dimens.textFieldHeight,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-            border: Border.all(color: Colors.black, width: isActive ? 2 : 1),
+            border: Border.all(
+                color: FormColors.textFieldBorderColor,
+                width: isActive ? 2 : 1),
           ),
           width: data.width,
-          child: Center(
+          child: Align(
+              alignment: Alignment.centerLeft,
               child: Text(
-            data.hint,
-            style: const TextStyle(fontSize: 12),
-          )),
+                data.hint,
+                style: TextStyles.textFieldTextStyle,
+              )),
         ),
         if (isActive)
           ResizeMarker(
               parentWidth: data.width,
-              parentHeight: Dimens.minRowHeigth,
+              parentHeight: Dimens.minRowHeight,
               onUpdate: (newWidth) {
                 if (onUpdate != null) {
                   onUpdate!(data.copyWith(width: newWidth));

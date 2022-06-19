@@ -1,3 +1,5 @@
+import 'package:design1c/data/elements/data_hyperlink.dart';
+import 'package:design1c/ui/elements/ui_hyperlink.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,10 +25,9 @@ class MainForm extends StatelessWidget {
     return Container(
       width: 700,
       //height: 500,
-      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
           border: Border.all(color: FormColors.formBorderColor),
-          color: FormColors.formBackgroungColor),
+          color: FormColors.formBackgroundColor),
       child: makeFormBody(context, context.watch<HomeBloc>().state.rows),
     );
   }
@@ -39,7 +40,7 @@ class MainForm extends StatelessWidget {
         onAccept: (data) => context
             .read<HomeBloc>()
             .add(InsertInNewRow(rowIndex: i, element: data)),
-        height: Dimens.heightBeetwinElements,
+        height: Dimens.heightBetweenElements,
       ));
       children.add(makeRow(context, row, i));
     }
@@ -47,7 +48,7 @@ class MainForm extends StatelessWidget {
     children.add(Expanded(
       child: DragTargetZone.column(
         onAccept: (data) => context.read<HomeBloc>().add(AddToLastRow(data)),
-        height: Dimens.heightBeetwinElements,
+        height: Dimens.heightBetweenElements,
       ),
     ));
 
@@ -66,7 +67,7 @@ class MainForm extends StatelessWidget {
         DragTargetZone.row(
           onAccept: (data) => context.read<HomeBloc>().add(AddToRow(
               rowIndex: rowIndex, positionInRow: i, element: data.copy())),
-          width: Dimens.widthBeetwinElements,
+          width: Dimens.widthBetweenElements,
         ),
       );
       children.add(UIElementWrapper(
@@ -101,17 +102,50 @@ class FormTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        Text(
-          'Реализация товаров услуг',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    return Container(
+      padding: const EdgeInsets.all(Dimens.formTitlePadding),
+      child: Row(
+        children: [
+          Container(
+            height: 24,
+            width: 36,
+            decoration: BoxDecoration(
+              border: Border.all(color: FormColors.formTitleIconBorderColor, width: Dimens.formTitleIconBorderWidth),
+              borderRadius: BorderRadius.circular(Dimens.formTitleIconBorderRadius),
+            ),
           ),
-        ),
-      ],
+          Opacity(
+            opacity: 0.5,
+            child: Container(
+              height: 24,
+              width: 36,
+              decoration: BoxDecoration(
+                border: Border.all(color: FormColors.formTitleIconBorderColor, width: Dimens.formTitleIconBorderWidth),
+                borderRadius: BorderRadius.circular(Dimens.formTitleIconBorderRadius),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 8.0,
+          ),
+          const Text(
+            'Реализация товаров услуг',
+            style: TextStyles.formTitleTextStyle,
+          ),
+          const Spacer(),
+          const SizedBox(
+            width: 30,
+            height: 24,
+            child: Icon(Icons.more_vert, color: FormColors.formTitleTextColor, size: 15),
+          ),
+          const SizedBox(
+            width: 30,
+            height: 24,
+            child: Icon(Icons.close, color: FormColors.formTitleTextColor, size: 15),
+          ),
+
+        ],
+      ),
     );
   }
 }
@@ -143,6 +177,8 @@ class UIElementWrapper extends StatelessWidget {
       return UIField(data: data, isActive: isActive);
     } else if (data is DataCheckbox) {
       return UICheckbox(data: data, isActive: isActive);
+    } else if (data is DataHyperlink) {
+      return UIHyperlink(data: data, isActive: isActive);
     }
     return const SizedBox();
   }
