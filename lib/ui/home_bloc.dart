@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:design1c/data/data_row.dart';
+import 'package:design1c/data/elements/data_table.dart';
 
 import '../data/data_element.dart';
 

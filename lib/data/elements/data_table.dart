@@ -1,21 +1,25 @@
 import 'package:design1c/data/data_element.dart';
 
-class DataTable extends DataElement{
+class DataFormTable extends DataElement{
 
-  final List<String> items;
+  final int rowCount;
+  final List<String> columns;
 
-  DataTable({
+  DataFormTable({
     String? id,
-    required this.items,
+    required this.columns,
+    this.rowCount = 1,
   }) : super(id: id ?? DataElement.newId());
 
-  DataTable copyWith({
+  DataFormTable copyWith({
     String? id,
-    List<String>? items,
+    List<String>? columns,
+    int? rowCount,
   }) =>
-      DataTable(
+      DataFormTable(
         id: id ?? this.id,
-        items: items ?? this.items,
+        columns: columns ?? this.columns,
+        rowCount: rowCount ?? this.rowCount,
       );
 
   @override

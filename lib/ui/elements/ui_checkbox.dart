@@ -1,12 +1,14 @@
 import 'package:design1c/data/elements/data_checkbox.dart';
-import 'package:design1c/ui/ui_element.dart';
 import 'package:design1c/utils/values.dart';
 import 'package:flutter/material.dart';
 
-class UICheckbox extends UIElement<DataCheckbox> {
-  const UICheckbox(
-      {Key? key, required DataCheckbox data, required bool isActive})
-      : super(key: key, data: data, isActive: isActive);
+class UICheckbox extends StatelessWidget{
+  final DataCheckbox data;
+  final bool isActive;
+
+  UICheckbox(
+      {Key? key, required this.data, required this.isActive})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

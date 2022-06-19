@@ -4,19 +4,17 @@ import 'package:design1c/ui/ui_element.dart';
 import 'package:design1c/utils/values.dart';
 import 'package:flutter/material.dart';
 
-class UIField extends UIElement<DataField> {
+class UIField extends StatelessWidget {
+  final DataField data;
+  final bool isActive;
   final void Function(DataField newData)? onUpdate;
 
   const UIField({
     Key? key,
-    required DataField data,
-    required bool isActive,
+    required this.data,
+    required this.isActive,
     this.onUpdate,
-  }) : super(
-          key: key,
-          data: data,
-          isActive: isActive,
-        );
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -47,6 +47,8 @@ class FormColors {
 
   static const Color activeElementBorderColor = Color.fromRGBO(250, 204, 31, 1);
 
+  static const Color tableHeaderBackgroundColor = Color.fromARGB(255, 242, 242, 242);
+  static const Color tableBorderColor = Color.fromARGB(255, 204, 204, 204);
 }
 
 class FontSizes {

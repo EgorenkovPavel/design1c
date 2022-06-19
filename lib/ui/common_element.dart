@@ -12,7 +12,7 @@ class CommonElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = UIElement.fromData(data: data, isActive: false);
+    final child = UIElement.fromDataForCommon(data: data, isActive: false);
     return Draggable<DataElement>(
       data: data,
       feedback: child,

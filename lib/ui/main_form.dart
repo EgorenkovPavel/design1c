@@ -1,5 +1,7 @@
 import 'package:design1c/data/elements/data_hyperlink.dart';
+import 'package:design1c/data/elements/data_table.dart';
 import 'package:design1c/ui/elements/ui_hyperlink.dart';
+import 'package:design1c/ui/elements/ui_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +17,9 @@ import 'elements/ui_button.dart';
 import 'elements/ui_checkbox.dart';
 import 'elements/ui_field.dart';
 import 'elements/ui_text.dart';
+import 'form_title.dart';
 import 'home_bloc.dart';
+import 'ui_element.dart';
 
 class MainForm extends StatelessWidget {
   const MainForm({Key? key}) : super(key: key);
@@ -60,6 +64,17 @@ class MainForm extends StatelessWidget {
   }
 
   Widget makeRow(BuildContext context, DataElementsRow row, int rowIndex) {
+    if (row.elements.length == 1 && row.elements.first is DataFormTable) {
+      final _data = row.elements.first;
+      return UIElementWrapper(
+        data: row.elements.first,
+        isActive: context
+            .select((HomeBloc bloc) => bloc.state.activeElement == _data),
+        onTap: () => context.read<HomeBloc>().add(SetActiveElement(_data)),
+        onReplace: () => context.read<HomeBloc>().add(DeleteElement(_data)),
+      );
+    }
+
     List<Widget> children = [];
     for (var i = 0; i < row.elements.length; i++) {
       var data = row.elements[i];
@@ -95,61 +110,6 @@ class MainForm extends StatelessWidget {
   }
 }
 
-class FormTitle extends StatelessWidget {
-  const FormTitle({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(Dimens.formTitlePadding),
-      child: Row(
-        children: [
-          Container(
-            height: 24,
-            width: 36,
-            decoration: BoxDecoration(
-              border: Border.all(color: FormColors.formTitleIconBorderColor, width: Dimens.formTitleIconBorderWidth),
-              borderRadius: BorderRadius.circular(Dimens.formTitleIconBorderRadius),
-            ),
-          ),
-          Opacity(
-            opacity: 0.5,
-            child: Container(
-              height: 24,
-              width: 36,
-              decoration: BoxDecoration(
-                border: Border.all(color: FormColors.formTitleIconBorderColor, width: Dimens.formTitleIconBorderWidth),
-                borderRadius: BorderRadius.circular(Dimens.formTitleIconBorderRadius),
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 8.0,
-          ),
-          const Text(
-            'Реализация товаров услуг',
-            style: TextStyles.formTitleTextStyle,
-          ),
-          const Spacer(),
-          const SizedBox(
-            width: 30,
-            height: 24,
-            child: Icon(Icons.more_vert, color: FormColors.formTitleTextColor, size: 15),
-          ),
-          const SizedBox(
-            width: 30,
-            height: 24,
-            child: Icon(Icons.close, color: FormColors.formTitleTextColor, size: 15),
-          ),
-
-        ],
-      ),
-    );
-  }
-}
-
 class UIElementWrapper extends StatelessWidget {
   final DataElement data;
   final bool isActive;
@@ -164,38 +124,19 @@ class UIElementWrapper extends StatelessWidget {
       required this.onReplace})
       : super(key: key);
 
-  Widget _fromData({
-    required DataElement data,
-    required bool isActive,
-    void Function(DataElement newData)? onUpdate,
-  }) {
-    if (data is DataButton) {
-      return UIButton(data: data, isActive: isActive);
-    } else if (data is DataText) {
-      return UIText(data: data, isActive: isActive);
-    } else if (data is DataField) {
-      return UIField(data: data, isActive: isActive);
-    } else if (data is DataCheckbox) {
-      return UICheckbox(data: data, isActive: isActive);
-    } else if (data is DataHyperlink) {
-      return UIHyperlink(data: data, isActive: isActive);
-    }
-    return const SizedBox();
-  }
-
   @override
   Widget build(BuildContext context) {
     if (isActive) {
-      return _fromData(data: data, isActive: isActive);
+      return UIElement.fromDataForForm(data: data, isActive: isActive);
     } else {
       return GestureDetector(
         onTap: onTap,
         child: Draggable<DataElement>(
           data: data,
-          feedback: _fromData(data: data, isActive: false),
-          childWhenDragging: _fromData(data: data, isActive: false),
+          feedback: UIElement.fromDataForCommon(data: data, isActive: false),
+          childWhenDragging: UIElement.fromDataForForm(data: data, isActive: false),
           onDragCompleted: onReplace,
-          child: _fromData(data: data, isActive: isActive),
+          child: UIElement.fromDataForForm(data: data, isActive: isActive),
         ),
       );
     }
