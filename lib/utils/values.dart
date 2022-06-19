@@ -23,6 +23,9 @@ class Dimens {
   static const double checkboxSize = 13;
   static const double checkboxBorderWidth = 1;
   static const double checkboxBorderRadius = 1.875;
+
+  static const double tableHeaderHeight = 28;
+  static const double tableRowHeight = 28;
 }
 
 class FormColors {

@@ -56,8 +56,9 @@ class _UITextState extends State<UIText> {
           ActiveElementBorder(
             width: _data.width,
             height: Dimens.minRowHeight,
-            isResizeAvailable: true,
-            onResize: onResize,
+            horizontalResizeAvailable: true,
+            onHorizontalResize: onResize,
+            verticalResizeAvailable: false,
           )
       ],
     );

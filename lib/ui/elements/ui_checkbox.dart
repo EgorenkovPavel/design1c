@@ -36,7 +36,7 @@ class UICheckbox extends StatelessWidget {
           ActiveElementBorder(
               width: Dimens.widthBetweenElements * 2 + Dimens.checkboxSize,
               height: Dimens.minRowHeight,
-              isResizeAvailable: false),
+              horizontalResizeAvailable: false, verticalResizeAvailable: false),
       ],
     );
   }

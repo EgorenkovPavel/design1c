@@ -61,8 +61,9 @@ class _UIFieldState extends State<UIField> {
           ActiveElementBorder(
             width: _data.width,
             height: Dimens.textFieldHeight,
-            isResizeAvailable: true,
-            onResize: onResize,
+            horizontalResizeAvailable: true,
+            verticalResizeAvailable: false,
+            onHorizontalResize: onResize,
           )
       ],
     );

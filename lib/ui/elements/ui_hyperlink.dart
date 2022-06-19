@@ -56,8 +56,9 @@ class _UIHyperlinkState extends State<UIHyperlink> {
           ActiveElementBorder(
             width: _data.width,
             height: Dimens.minRowHeight,
-            isResizeAvailable: true,
-            onResize: onResize,
+            horizontalResizeAvailable: true,
+            verticalResizeAvailable: false,
+            onHorizontalResize: onResize,
           )
       ],
     );
