@@ -1,4 +1,5 @@
 import 'package:design1c/data/elements/data_field.dart';
+import 'package:design1c/ui/active_element_border.dart';
 import 'package:design1c/utils/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,6 @@ class UIField extends StatefulWidget {
 }
 
 class _UIFieldState extends State<UIField> {
-
   late DataField _data;
 
   @override
@@ -29,9 +29,7 @@ class _UIFieldState extends State<UIField> {
     _data = widget.data;
   }
 
-  void updateWidths(BuildContext context, Offset offset) {
-    final delta = offset.dx;
-
+  void onResize(double delta){
     _data = _data.copyWith(width: _data.width + delta);
 
     setState(() {});
@@ -48,9 +46,8 @@ class _UIFieldState extends State<UIField> {
           height: Dimens.textFieldHeight,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-            border: Border.all(
-                color: FormColors.textFieldBorderColor,
-                width: 1),
+            border:
+                Border.all(color: FormColors.textFieldBorderColor, width: 1),
           ),
           width: _data.width,
           child: Align(
@@ -61,34 +58,11 @@ class _UIFieldState extends State<UIField> {
               )),
         ),
         if (widget.isActive)
-          Container(
+          ActiveElementBorder(
             width: _data.width,
             height: Dimens.textFieldHeight,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: Dimens.activeElementBorderWidth,
-                color: FormColors.activeElementBorderColor,
-              ),
-            ),
-          ),
-        if (widget.isActive)
-          Positioned(
-            top: Dimens.minRowHeight / 2 - _ballRadius,
-            right: 0 - _ballRadius,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onHorizontalDragUpdate: (details) {
-                updateWidths(context, details.delta);
-              },
-              child: Container(
-                height: _ballRadius * 2,
-                width: _ballRadius * 2,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: FormColors.activeElementBorderColor,
-                ),
-              ),
-            ),
+            isResizeAvailable: true,
+            onResize: onResize,
           )
       ],
     );

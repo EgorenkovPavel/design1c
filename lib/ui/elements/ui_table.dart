@@ -1,3 +1,4 @@
+import 'package:design1c/ui/active_element_border.dart';
 import 'package:design1c/utils/values.dart';
 import 'package:flutter/material.dart';
 
@@ -5,12 +6,10 @@ import '../../data/elements/data_table.dart';
 
 class UITableCommon extends StatelessWidget {
   final DataFormTable data;
-  final bool isActive;
 
   const UITableCommon({
     Key? key,
     required this.data,
-    required this.isActive,
   }) : super(key: key);
 
   @override
@@ -62,20 +61,29 @@ class UIFormTable extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: FormColors.tableBorderColor),
       ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: children
-                .map<Widget>(
-                    (child) => Expanded(child: child))
-                .toList(),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-        ],
-      ),
+      child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+        return Stack(
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: children
+                      .map<Widget>(
+                          (child) => Expanded(child: child))
+                      .toList(),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+              ],
+            ),
+            if (isActive)
+              ActiveElementBorder(width: constraints.maxWidth, height: 60, isResizeAvailable: false) //TODO
+          ],
+        );
+      },),
+
     );
   }
 }

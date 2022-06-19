@@ -31,7 +31,7 @@ class UIElement{
     } else if (data is DataHyperlink){
       return UIHyperlink(data: data, isActive: false);
     } else if (data is DataFormTable) {
-      return UITableCommon(data: data, isActive: false);
+      return UITableCommon(data: data);
     }
     return const SizedBox();
   }
