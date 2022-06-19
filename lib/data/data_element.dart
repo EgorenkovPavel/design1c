@@ -7,7 +7,7 @@ abstract class DataElement extends Equatable {
 
   final String id;
 
-  DataElement({required this.id});
+  const DataElement({required this.id});
 
   DataElement copy();
 

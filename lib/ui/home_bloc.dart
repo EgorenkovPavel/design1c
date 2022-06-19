@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:design1c/data/data_row.dart';
 
 import '../data/data_element.dart';
-import '../data/elements/data_text.dart';
 
 abstract class FormEvent {}
 
@@ -115,9 +114,9 @@ class HomeBloc extends Bloc<FormEvent, FormState> {
   FutureOr<void> _onElementChanged(
       OnElementChanged event, Emitter<FormState> emit) {
     var rows = state.rows.toList();
-    rows.forEach((row) {
+    for (var row in rows) {
       row.replace(event.element);
-    });
+    }
     emit(FormState(rows: rows, activeElement: event.element));
   }
 
@@ -127,9 +126,9 @@ class HomeBloc extends Bloc<FormEvent, FormState> {
 
   FutureOr<void> _deleteElement(DeleteElement event, Emitter<FormState> emit) {
     var rows = state.rows.toList();
-    rows.forEach((row) {
+    for (var row in rows) {
       row.delete(event.element);
-    });
+    }
     rows.removeWhere((row) => row.elements.isEmpty);
     emit(FormState(rows: rows));
   }

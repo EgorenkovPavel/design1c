@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => HomeBloc(),
-        child: MyHomePage(),
+        child: const MyHomePage(),
       )
     );
   }

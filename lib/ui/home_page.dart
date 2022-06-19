@@ -1,14 +1,11 @@
 import 'package:design1c/data/data_element.dart';
 import 'package:design1c/ui/common_elements_panel.dart';
-import 'package:design1c/ui/edit_panel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home_bloc.dart';
 import 'main_form.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({
+  const MyHomePage({
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +18,7 @@ class MyHomePage extends StatelessWidget {
         children: [
           CommonElementsPanel(),
           const Spacer(),
-          MainForm(),
+          const MainForm(),
           const Spacer(),
           // SizedBox(
           //   width: 300,

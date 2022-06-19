@@ -55,9 +55,9 @@ abstract class UIElement<T extends DataElement> extends StatelessWidget {
         child: Draggable<DataElement>(
           data: data,
           feedback: UIElement.fromData(data: data, isActive: false),
-          child: UIElement.fromData(data: data, isActive: isActive),
           childWhenDragging: UIElement.fromData(data: data, isActive: false),
           onDragCompleted: onReplace,
+          child: UIElement.fromData(data: data, isActive: isActive),
         ),
       );
     }

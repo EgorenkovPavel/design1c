@@ -54,7 +54,6 @@ class ManipulatingBall extends StatelessWidget {
     // final width = MediaQuery.of(context).size.width;
     final delta = offset.dx;
 
-    print(delta);
     onDrag(delta, 0);
   }
 
